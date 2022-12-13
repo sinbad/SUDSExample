@@ -1,3 +1,6 @@
 [submodule "Plugins/SUDS"]
 	path = Plugins/SUDS
 	url = https://github.com/sinbad/SUDS
+[submodule "Plugins/StevesUEHelpers"]
+	path = Plugins/StevesUEHelpers
+	url = https://github.com/sinbad/StevesUEHelpers
