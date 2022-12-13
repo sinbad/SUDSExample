@@ -4,9 +4,10 @@
 
 NPC: Hello, welcome to the <Em>SUDS Example Project!</>
 NPC: I'm acting as a kind of <Em>FAQ</>, just in <Float>interactive form</>.
+:rootwithintro
 NPC: Feel free to explore this dialogue and take a look at the <Em>source</>, both here in UE and the source <Em>.sud file</>.
     :rootchoices
-    * What do you mean by dialogue source?
+    * What is dialogue source?
         NPC: Dialogues are written as text files with the extension <Em>.sud</>.
         NPC: You can find this one in <Em>Content/Dialogue/Dlg_FAQExample.sud</>.
             :sudchoices
@@ -22,11 +23,37 @@ NPC: Feel free to explore this dialogue and take a look at the <Em>source</>, bo
             * Ask about something else
                 NPC: Sure, what else can I help you with?
                 [goto rootchoices]
-    * How does the dialogue know what the NPC is called? 
-        NPC: This NPC is actually a Blueprint which implements the <Em>SUDSParticipant</> interface.
-        NPC: One of the things a participant in a dialogue can do is set variables, in response to events.
-        NPC: This NPC sets its speaker name as a variable when the dialogue starts, which is why you know I'm called {SpeakerName.NPC}
-        [goto rootchoices]
+    * Ask about running dialogues
+        NPC: What would you like to know about running dialogues?
+        :dialoguechoices
+            * How do you start a dialogue?
+                NPC: You create a dialogue instance from a script asset, optionally with <Em>participants</> attached.
+                * What's a participant?
+                    NPC: Participants are actors or other objects which are involved closely in the dialogue.
+                    NPC: They often own the dialogue, or provide variables to it, or respond to events that it raises.
+                      * Send an event right now!
+                        [event TestEvent 99]
+                        NPC: Done! See that message at the top? That's because the NPC participant received that event and printed it to the console.
+                        NPC: Events are sent to all participants, and also to anyone else who subscribes to them.
+                        NPC: You can send any number of arguments back to your code with the event.
+                        [goto dialoguechoices]
+                      * OK I see
+                        NPC: Anything else?
+                        [goto dialoguechoices]
+                * Where is the code to do this in this example?
+                    NPC: Because this is a simple example, it's kicked off in the <Float>Level Blueprint</>. 
+                    NPC: But we pass it to the <Em>Player Controller</> to actually run it; it makes it easier to handle input events.
+                    [goto dialoguechoices]
+                * Back
+                    [goto rootwithintro]
+                     
+            * How does the dialogue know what the NPC is called? 
+                NPC: This NPC is actually a Blueprint which implements the <Em>SUDSParticipant</> interface.
+                NPC: One of the things a participant in a dialogue can do is set variables, in response to events.
+                NPC: This NPC sets its speaker name as a variable when the dialogue starts, which is why you know I'm called {SpeakerName.NPC}
+                [goto dialoguechoices]
+            * Back
+                [goto rootwithintro]
     * Exit Dialogue
         [goto goodbye]
 
