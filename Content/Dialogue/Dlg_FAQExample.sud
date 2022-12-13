@@ -1,0 +1,33 @@
+===
+[set NumberOfTimesAsked 0]
+===
+
+NPC: Hello, welcome to the <Em>SUDS Example Project!</>
+NPC: I'm acting as a kind of <Em>FAQ</>, just in <Float>interactive form</>.
+NPC: Feel free to explore this dialogue and take a look at the source, both here in UE and the source .sud file.
+    :rootchoices
+    * What do you mean by dialogue source?
+        NPC: Dialogues are written as text files with the extension <Em>.sud</>.
+        NPC: You can find this one in <Em>Content/Dialogue/Dlg_FAQExample.sud</>.
+            :sudchoices
+            * How should I open the .sud file?
+                NPC: Ideally, open it in Visual Studio Code with the SUDS Extension installed.
+                NPC: The SUDS Extension adds syntax highlighting which makes it easier to read.
+                [goto sudchoices]
+            * How do .sud files work in UE?
+                NPC: .sud files are imported into UE as <Em>SUD Script Assets</>.
+                NPC: You can then create runtime dialogue based on these assets. 
+                NPC: Take a look at the <Em>Level Blueprint</> for an example of how to do this.
+                [goto sudchoices]
+            * Ask about something else
+                [goto rootchoices]
+    * How does the dialogue know what the NPC is called? 
+        NPC: This NPC is actually a Blueprint which implements the <Em>SUDSParticipant</> interface.
+        NPC: One of the things a participant in a dialogue can do is set variables, in response to events.
+        NPC: This NPC sets its speaker name as a variable when the dialogue starts, which is why you know I'm called {SpeakerName.NPC}
+        [goto rootchoices]
+    * Exit Dialogue
+        [goto goodbye]
+
+:goodbye
+NPC: OK bye!
