@@ -12,5 +12,10 @@ public class SUDSExampleTarget : TargetRules
 		IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
 
 		ExtraModuleNames.AddRange( new string[] { "SUDSExample" } );
+		
+		if (!bBuildAllModules)  
+		{  
+			NativePointerMemberBehaviorOverride = PointerMemberBehavior.Disallow;  
+		}
 	}
 }
